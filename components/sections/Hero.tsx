@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -89,7 +90,16 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="order-1 flex justify-center lg:order-2"
         >
-          <div className="h-64 w-64 rounded-full border-4 border-gold/30 bg-charcoal/80 shadow-2xl md:h-80 md:w-80 lg:h-96 lg:w-96" />
+          <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-gold/30 bg-charcoal/80 shadow-2xl md:h-80 md:w-80 lg:h-96 lg:w-96">
+            <Image
+              src="/hero-headshot.png"
+              alt="Mentor headshot"
+              fill
+              sizes="(min-width: 1024px) 384px, (min-width: 768px) 320px, 256px"
+              className="object-cover"
+              priority
+            />
+          </div>
         </motion.div>
       </div>
     </section>
