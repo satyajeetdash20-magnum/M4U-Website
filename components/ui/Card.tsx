@@ -25,6 +25,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           variants[variant],
           className
         )}
+        whileHover={{ y: -4, boxShadow: "0 14px 28px rgba(0, 0, 0, 0.14)" }}
         {...props}
       />
     );

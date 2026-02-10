@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
-import { ArrowRight, Mail, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Mail, MessageCircle } from "lucide-react";
+import { BookCallButton } from "@/components/ui/BookCallButton";
 
 export function FinalCTA() {
   return (
@@ -20,16 +19,14 @@ export function FinalCTA() {
             Book a free 15-minute consultation to discuss your goals and see if
             our program is the right fit. No pressure—just clarity.
           </p>
-          <Link href="#contact" className="mt-10 inline-block">
-            <Button
+          <div className="mt-10">
+            <BookCallButton
               size="lg"
               variant="primary"
-              className="rounded-lg text-[18px] px-10 py-4"
-              rightIcon={<ArrowRight size={22} />}
-            >
-              Book Your Free Strategy Call →
-            </Button>
-          </Link>
+              className="rounded-lg px-10 py-4 text-[18px]"
+              label="Book Free Call"
+            />
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-[#D1D5DB]">
             <a
               href="mailto:hello@mentorsubhimath.com"

@@ -5,9 +5,9 @@ import { Mail, MessageCircle, MapPin, Instagram, Youtube, Linkedin } from "lucid
 
 const quickLinks = [
   { href: "#programs", label: "Programs" },
-  { href: "#whats-included", label: "Resources" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#testimonials", label: "Testimonials" },
   { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
 ];
 
 const socialLinks = [

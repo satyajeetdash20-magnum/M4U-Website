@@ -1,29 +1,30 @@
 "use client";
 
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    initials: "RK",
+    initials: "AP",
     quote:
       "I went from 620 to 760 on SAT Math in 4 months. The weekly mocks and topic-wise repos made the difference—I always knew what to practice next.",
-    name: "Rahul K.",
+    name: "Ariana P.",
     scoreLine: "620 → 760 SAT Math",
     university: "Admitted to UCLA",
   },
   {
-    initials: "PM",
+    initials: "EC",
     quote:
       "Finally got my A* in IGCSE Math. The live classes and weak-spot drilling were exactly what I needed. Subhankar explains things clearly and never rushes.",
-    name: "Priya M.",
+    name: "Ethan C.",
     scoreLine: "B → A* IGCSE Math",
     university: "Admitted to Imperial College London",
   },
   {
-    initials: "AS",
+    initials: "RK",
     quote:
       "The structured program and mock exams took away my test anxiety. I hit 750 on my first real SAT. Couldn't have asked for a better coach.",
-    name: "Arjun S.",
+    name: "Rahul K.",
     scoreLine: "680 → 750 SAT Math",
     university: "Admitted to NUS",
   },
@@ -45,8 +46,11 @@ export function Testimonials() {
         <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((t, index) => (
             <SectionWrapper key={t.name} delay={index * 0.1}>
-              <div className="h-full rounded-lg border-l-4 border-gold bg-white p-6 shadow-subtle">
-                <div className="mb-4 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy text-lg font-heading font-bold text-gold">
+              <motion.div
+                className="h-full rounded-lg border-l-4 border-gold bg-white p-6 shadow-subtle"
+                whileHover={{ y: -4, boxShadow: "0 14px 28px rgba(0, 0, 0, 0.14)" }}
+              >
+                <div className="mb-4 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-navy text-xl font-heading font-bold text-gold">
                   {t.initials}
                 </div>
                 <p className="text-[18px] text-dark-gray">&ldquo;{t.quote}&rdquo;</p>
@@ -55,7 +59,7 @@ export function Testimonials() {
                 </p>
                 <p className="text-sm text-gold font-medium">{t.scoreLine}</p>
                 <p className="text-sm text-dark-gray">{t.university}</p>
-              </div>
+              </motion.div>
             </SectionWrapper>
           ))}
         </div>

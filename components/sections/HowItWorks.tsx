@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
-import { Calendar, Laptop, Trophy, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Calendar, Laptop, Trophy } from "lucide-react";
+import { BookCallButton } from "@/components/ui/BookCallButton";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -45,7 +45,10 @@ export function HowItWorks() {
         <div className="grid gap-8 md:grid-cols-3">
           {steps.map((step, index) => (
             <SectionWrapper key={step.number} delay={index * 0.1}>
-              <div className="flex h-full flex-col rounded-lg bg-white p-6 shadow-elevated">
+              <motion.div
+                className="flex h-full flex-col rounded-lg bg-white p-6 shadow-elevated"
+                whileHover={{ y: -4, boxShadow: "0 14px 28px rgba(0, 0, 0, 0.14)" }}
+              >
                 <div className="mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold text-navy font-heading font-bold">
                   {step.number}
                 </div>
@@ -58,22 +61,18 @@ export function HowItWorks() {
                 <p className="mt-2 flex-1 text-dark-gray">
                   {step.description}
                 </p>
-              </div>
+              </motion.div>
             </SectionWrapper>
           ))}
         </div>
 
         <SectionWrapper className="mt-12 text-center" delay={0.4}>
-          <Link href="#contact">
-            <Button
-              size="lg"
-              variant="primary"
-              rightIcon={<ArrowRight size={20} />}
-              className="rounded-lg"
-            >
-              Book Your Free Strategy Call →
-            </Button>
-          </Link>
+          <BookCallButton
+            size="lg"
+            variant="primary"
+            className="rounded-lg"
+            label="Book Free Call"
+          />
         </SectionWrapper>
       </div>
     </section>

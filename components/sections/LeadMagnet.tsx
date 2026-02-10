@@ -1,13 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
 type LeadFormData = {
-  firstName: string;
   email: string;
 };
 
@@ -18,10 +18,12 @@ export function LeadMagnet() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<LeadFormData>();
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
 
   const onSubmit = async (data: LeadFormData) => {
     await new Promise((r) => setTimeout(r, 800));
-    console.log(data);
+    console.log("Lead magnet signup:", data);
+    setSubmittedEmail(data.email);
     reset();
   };
 
@@ -40,22 +42,13 @@ export function LeadMagnet() {
         </SectionWrapper>
 
         <SectionWrapper delay={0.1}>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="mt-10 space-y-4"
-          >
-            <Input
-              label="First Name"
-              placeholder="Your first name"
-              className="bg-white text-charcoal"
-              {...register("firstName", { required: "First name is required" })}
-              error={errors.firstName?.message}
-            />
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-4">
             <Input
               label="Email"
               type="email"
               placeholder="your@email.com"
               className="bg-white text-charcoal"
+              aria-label="Email address for SAT blueprint"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -72,10 +65,16 @@ export function LeadMagnet() {
               className="w-full rounded-lg text-[18px]"
               rightIcon={<ArrowRight size={20} />}
               isLoading={isSubmitting}
+              aria-label="Send SAT prep blueprint"
             >
               Send Me the Blueprint →
             </Button>
           </form>
+          {submittedEmail && (
+            <p className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-center text-sm text-emerald-900">
+              Check your email! Blueprint sent to {submittedEmail}.
+            </p>
+          )}
           <p className="mt-4 text-center text-sm text-white/70">
             No spam. Just the free guide + weekly math tips.
           </p>

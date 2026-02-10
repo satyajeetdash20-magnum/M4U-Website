@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
-import { BookOpen, GraduationCap, Target, Check, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { BookOpen, GraduationCap, Target, Check } from "lucide-react";
+import { BookCallButton } from "@/components/ui/BookCallButton";
+import { motion } from "framer-motion";
 
 const programs = [
   {
@@ -70,12 +70,13 @@ export function Programs() {
         <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">
           {programs.map((program, index) => (
             <SectionWrapper key={program.title} delay={index * 0.1}>
-              <div
+              <motion.div
                 className={`relative flex h-full flex-col rounded-lg p-6 shadow-elevated ${
                   program.variant === "center"
                     ? "bg-navy text-white lg:-mt-4 lg:mb-4 lg:scale-105"
                     : "bg-white text-charcoal border border-light-gray"
                 }`}
+                whileHover={{ y: -4, boxShadow: "0 14px 28px rgba(0, 0, 0, 0.16)" }}
               >
                 {program.variant === "center" && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy">
@@ -148,21 +149,18 @@ export function Programs() {
                   {program.price}
                 </p>
                 <div className="mt-6 flex-1" />
-                <Link href="#contact" className="mt-4 block">
-                  <Button
-                    size="lg"
-                    variant={program.variant === "center" ? "primary" : "outline"}
-                    className={`w-full rounded-lg ${
-                      program.variant === "side"
-                        ? "border-navy text-navy hover:bg-navy hover:text-white"
-                        : ""
-                    }`}
-                    rightIcon={<ArrowRight size={20} />}
-                  >
-                    {program.cta}
-                  </Button>
-                </Link>
-              </div>
+                <BookCallButton
+                  size="lg"
+                  variant={program.variant === "center" ? "primary" : "outline"}
+                  className={`mt-4 w-full rounded-lg ${
+                    program.variant === "side"
+                      ? "border-navy text-navy hover:bg-navy hover:text-white"
+                      : ""
+                  }`}
+                  label={program.cta}
+                  aria-label={`Book free call for ${program.title}`}
+                />
+              </motion.div>
             </SectionWrapper>
           ))}
         </div>

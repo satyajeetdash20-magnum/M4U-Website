@@ -20,13 +20,13 @@ export function SocialProofBar() {
             Trusted by students preparing for admissions to:
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {universities.map((uni, i) => (
+            {universities.map((uni) => (
               <div
                 key={uni.slug}
-                className="flex h-20 w-24 items-center justify-center rounded-lg bg-white/10 grayscale"
+                className="flex h-20 w-28 items-center justify-center rounded-lg bg-[#E5E7EB]"
                 aria-label={uni.name}
               >
-                <span className="text-sm font-semibold text-white/80">
+                <span className="text-sm font-semibold text-charcoal">
                   {uni.name}
                 </span>
               </div>

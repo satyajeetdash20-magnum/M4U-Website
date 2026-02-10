@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { BookCallButton } from "@/components/ui/BookCallButton";
 
 export function Hero() {
   return (
@@ -57,16 +55,12 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-8 flex flex-col gap-4"
           >
-            <Link href="#contact">
-              <Button
-                size="lg"
-                variant="primary"
-                className="text-[18px] rounded-lg"
-                rightIcon={<ArrowRight size={20} />}
-              >
-                Book Your Free 15-Min Strategy Call →
-              </Button>
-            </Link>
+            <BookCallButton
+              size="lg"
+              variant="primary"
+              className="rounded-lg text-[18px]"
+              label="Book Free Call"
+            />
             <p className="text-[#9CA3AF]">
               <Link href="#programs" className="hover:text-gold transition-colors">
                 Or explore our programs below ↓
@@ -90,15 +84,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="order-1 flex justify-center lg:order-2"
         >
-          <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-gold/30 bg-charcoal/80 shadow-2xl md:h-80 md:w-80 lg:h-96 lg:w-96">
-            <Image
-              src="/hero-headshot.png"
-              alt="Mentor headshot"
-              fill
-              sizes="(min-width: 1024px) 384px, (min-width: 768px) 320px, 256px"
-              className="object-cover"
-              priority
-            />
+          <div className="flex h-[300px] w-[300px] items-center justify-center rounded-full border-4 border-gold/40 bg-navy shadow-2xl">
+            <span className="font-heading text-7xl font-bold text-gold">SK</span>
           </div>
         </motion.div>
       </div>
