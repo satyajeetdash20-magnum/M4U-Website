@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { BookCallButton } from "@/components/ui/BookCallButton";
@@ -18,6 +19,9 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
   const itemCount = useCartStore((state) => state.getItemCount());
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,13 +33,19 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const section = document.querySelector(href);
-    if (!section) return;
-
-    const y = section.getBoundingClientRect().top + window.scrollY - 90;
-    window.scrollTo({ top: y, behavior: "smooth" });
+  const handleNavClick = (href: string) => {
     setIsOpen(false);
+
+    if (isHome) {
+      // Already on home page — smooth-scroll to section
+      const section = document.querySelector(href);
+      if (!section) return;
+      const y = section.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      // On another page — navigate to home page with the anchor
+      router.push(`/${href}`);
+    }
   };
 
   return (
@@ -50,13 +60,13 @@ export function Navigation() {
           className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6 lg:px-8"
           aria-label="Main navigation"
         >
-          <button
-            onClick={() => scrollToSection("#hero")}
+          <Link
+            href="/"
             className="font-heading text-xl font-bold text-white md:text-2xl"
-            aria-label="Scroll to top"
+            aria-label="Go to home page"
           >
             MentorSubhi<span className="text-gold">Math</span>
-          </button>
+          </Link>
 
           <div className="hidden items-center gap-6 md:flex lg:gap-8">
             <Link
@@ -80,7 +90,7 @@ export function Navigation() {
             {navLinks.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link.href)}
                 className="text-sm text-white/90 transition-colors hover:text-gold"
                 aria-label={`Go to ${link.label} section`}
               >
@@ -158,7 +168,7 @@ export function Navigation() {
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link.href)}
                     className="text-left text-charcoal transition-colors hover:text-gold"
                     aria-label={`Go to ${link.label} section`}
                   >
